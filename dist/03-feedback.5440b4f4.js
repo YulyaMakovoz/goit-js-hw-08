@@ -503,6 +503,33 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"eH52W":[function(require,module,exports) {
+// При загрузке страницы проверяй состояние хранилища, и если там есть сохраненные данные, заполняй ими поля формы. В противном случае поля должны быть пустыми.
+// Сделай так, чтобы хранилище обновлялось не чаще чем раз в 500 миллисекунд. Для этого добавь в проект и используй библиотеку lodash.throttle.
+const inputEl = document.querySelector("input");
+const messageEl = document.querySelector("textarea");
+const formEl = document.querySelector(".feedback-form");
+// const formData = {};
+inputEl.addEventListener("input", onInput);
+messageEl.addEventListener("input", onInput);
+formEl.addEventListener("submit", onSubmit);
+// Отслеживай на форме событие input, и каждый раз записывай в локальное хранилище объект с полями email и message, в которых сохраняй текущие значения полей формы. Пусть ключом для хранилища будет строка "feedback-form-state".
+function onInput(event) {
+    const mail = inputEl.value;
+    const message = messageEl.value;
+    const formData = {
+        mail,
+        message
+    };
+    localStorage.setItem("feedback-form-state", JSON.stringify(formData));
+}
+// При сабмите формы очищай хранилище и поля формы, а также выводи объект с полями email, message и текущими их значениями в консоль.
+function onSubmit(event) {
+    event.preventDefault();
+    const savedData = localStorage.getItem("feedback-form-state");
+    console.log(savedData);
+    localStorage.removeItem("feedback-form-state");
+    formEl.reset();
+}
 
 },{}]},["7Ih8d","eH52W"], "eH52W", "parcelRequired7c6")
 
