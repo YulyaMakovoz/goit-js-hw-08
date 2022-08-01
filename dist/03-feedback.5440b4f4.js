@@ -503,7 +503,7 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"eH52W":[function(require,module,exports) {
-throttle = require("lodash.throttle");
+const throttle = require("lodash.throttle");
 const inputEl = document.querySelector("input");
 const messageEl = document.querySelector("textarea");
 const formEl = document.querySelector(".feedback-form");

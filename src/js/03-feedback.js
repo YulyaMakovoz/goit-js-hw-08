@@ -1,7 +1,7 @@
 
 
 
-throttle = require("lodash.throttle");
+const throttle = require("lodash.throttle");
 
 
 const inputEl = document.querySelector('input');
